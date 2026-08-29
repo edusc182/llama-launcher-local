@@ -1,0 +1,52 @@
+# ==Modelos==
+/modelos/
+/models/
+*.gguf
+*.ggml
+*.bin
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.ckpt
+mmproj*
+
+# ==Entorno Python==
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# ==Generados por el script==
+opencode.json
+last_launch.txt
+
+# ==Logs==
+*.log
+logs/
+
+# ==Credenciales y secretos==
+.env
+.env.*
+*.env
+*.secret
+.secrets/
+*.key
+*.pem
+*.crt
+*.p12
+
+# ==Sistema / editor==
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+.DS_Store
+
+# ==Configuracion local y personal==
+*.local.txt
+config.local.txt
+*.local.json
+*.local.yaml
+*.local.yml

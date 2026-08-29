@@ -1,0 +1,6 @@
+C:\ruta\a\mi\modelo\Modelo-7B-Instruct-q8_0.gguf
+8192
+127.0.0.1
+
+Y
+C:\ruta\a\chat_template.jinja
