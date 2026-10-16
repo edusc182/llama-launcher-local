@@ -22,7 +22,7 @@ support, ready to plug into **OpenCode**.
   - Automatic generation of the **`opencode.json`** config file.
   - Optional access from other devices on your network.
 - **Mode 2 — Multimodal LLM**:
-  - Via **GGUF** (`llama-llava-cli.exe`) for CPU.
+  - Via **GGUF** (`llama-mtmd-cli.exe`) for CPU.
   - Via **HuggingFace** (Python + transformers) using the `inference_helper.py`
     helper — for (vision-)language models exposing the standard
     `AutoProcessor` / `AutoModelForCausalLM` interface.
@@ -41,7 +41,7 @@ support, ready to plug into **OpenCode**.
 | **A `.gguf` model** | Mode 1 | Any compatible model (e.g. Gemma, Llama, Qwen, LLaVA) |
 | **Python 3.10+** | Mode 2 (HuggingFace only) | Added to `PATH` |
 
-> ⚠️ The script looks for **`llama-server.exe`** (and `llama-llava-cli.exe` in
+> ⚠️ The script looks for **`llama-server.exe`** (and `llama-mtmd-cli.exe` in
 > Mode 2-GGUF) **in the same folder** where it is placed. Put the llama.cpp
 > binaries next to the script.
 
@@ -66,7 +66,7 @@ generic image-understanding engine:
 
 1. **Create a working folder** and copy into it:
    - `llama-launcher.bat` (this script)
-   - the llama.cpp executables: `llama-server.exe` (and `llama-llava-cli.exe`
+   - the llama.cpp executables: `llama-server.exe` (and `llama-mtmd-cli.exe`
      if using Mode 2-GGUF) plus their DLLs
    - your `.gguf` model file
 
@@ -127,7 +127,7 @@ Reference example (also included as `opencode.example.json`):
 
 Press **`2`** and provide the model path:
 
-- **`.gguf`** → uses `llama-llava-cli.exe` (CPU). You can add `mmproj`, an image
+- **`.gguf`** → uses `llama-mtmd-cli.exe` (CPU). You can add `mmproj`, an image
   and a prompt. Image support only for llama.cpp vision architectures with a
   matching `mmproj` (see the multimodal note above).
 - **HuggingFace folder** → uses Python + transformers via `inference_helper.py`.

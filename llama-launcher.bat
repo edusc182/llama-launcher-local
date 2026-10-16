@@ -83,20 +83,20 @@ if "!MModelPath!"=="" (
     echo [INFO] No se indico ruta. Volviendo al menu.
     goto MainMenu
 )
-rem Ruta: .gguf -> llama-llava-cli.exe  |  carpeta -> Python transformers
+rem Ruta: .gguf -> llama-mtmd-cli.exe  |  carpeta -> Python transformers
 if /i "!MModelPath:~-5!"==".gguf" goto MMGGUF
 if exist "!MModelPath!\" goto MMHuggingFace
 echo.
 echo [ERROR] Ruta no encontrada o formato no reconocido.
-echo    - Modelo GGUF  : apunta a un archivo .gguf  (usa llama-llava-cli.exe)
+echo    - Modelo GGUF  : apunta a un archivo .gguf  (usa llama-mtmd-cli.exe)
 echo    - HuggingFace  : apunta a la carpeta del modelo (usa Python transformers)
 goto End
 
 :MMGGUF
-echo [GGUF] Usando llama-llava-cli.exe
+echo [GGUF] Usando llama-mtmd-cli.exe
 echo.
-if not exist "%~dp0llama-llava-cli.exe" (
-    echo [ERROR] No se encontro llama-llava-cli.exe en esta carpeta.
+if not exist "%~dp0llama-mtmd-cli.exe" (
+    echo [ERROR] No se encontro llama-mtmd-cli.exe en esta carpeta.
     echo         Asegurate de usar una build reciente de llama.cpp.
     goto End
 )
@@ -114,17 +114,18 @@ echo.
 echo Ejecutando inferencia multimodal GGUF (modo CPU)...
 if "!MMmprojPath!"=="" (
     if "!MImagePath!"=="" (
-        llama-llava-cli.exe -m "!MModelPath!" -c 0 -fa -p "!MPrompt!"
+        llama-mtmd-cli.exe -m "!MModelPath!" -c 0 -p "!MPrompt!"
     ) else (
-        llama-llava-cli.exe -m "!MModelPath!" -c 0 -fa -p "!MPrompt!" --image "!MImagePath!"
+        llama-mtmd-cli.exe -m "!MModelPath!" -c 0 -p "!MPrompt!" --image "!MImagePath!"
     )
 ) else (
     if "!MImagePath!"=="" (
-        llama-llava-cli.exe -m "!MModelPath!" --mmproj "!MMmprojPath!" -c 0 -fa -p "!MPrompt!"
+        llama-mtmd-cli.exe -m "!MModelPath!" --mmproj "!MMmprojPath!" -c 0 -p "!MPrompt!"
     ) else (
-        llama-llava-cli.exe -m "!MModelPath!" --mmproj "!MMmprojPath!" -c 0 -fa -p "!MPrompt!" --image "!MImagePath!"
+        llama-mtmd-cli.exe -m "!MModelPath!" --mmproj "!MMmprojPath!" -c 0 -p "!MPrompt!" --image "!MImagePath!"
     )
 )
+goto End
 
 :MMHuggingFace
 echo [HuggingFace] Usando Python transformers
@@ -262,12 +263,12 @@ ipconfig | findstr /i "IPv4"
 echo ---------------------------------------------
 
 :SavePreset
-echo !ModelPath!>last_launch.txt
-echo !ContextSize!>> last_launch.txt
-echo !HostAddress!>> last_launch.txt
-echo !MmprojPath!>> last_launch.txt
-echo !JinjaMode!>> last_launch.txt
-echo !ChatTemplateFile!>> last_launch.txt
+echo(!ModelPath!>last_launch.txt
+echo(!ContextSize!>> last_launch.txt
+echo(!HostAddress!>> last_launch.txt
+echo(!MmprojPath!>> last_launch.txt
+echo(!JinjaMode!>> last_launch.txt
+echo(!ChatTemplateFile!>> last_launch.txt
 
 :ProcessInput
 for %%A in ("!ModelPath!") do set "AliasName=%%~nA"
